@@ -15,11 +15,11 @@ if len(sys.argv) != 2:
     print scanble(timeout = 3)
     sys.exit(1)
 """
-BLYNK_AUTH = 'Your Auth Token'
+BLYNK_AUTH = 'b1d9aa0b91ee40769c0ade8b3519f8b1'
 """
-macadr = "MAC Adr 1"
+macadr = "34:15:13:CD:C0:02"
 swfir = BLEDevice(macadr)
-macadr =  "MAC Adr 2"   
+macadr =  "D4:36:39:D8:61:17"   
 swsec = BLEDevice(macadr)
 """
 # Initialize Blynk
@@ -116,16 +116,20 @@ def my_write_handler(value):
         ac = subprocess.call(["irsend", "SEND_ONCE", "samsung", "mode_blow"])
 
 
-"""
 @blynk.VIRTUAL_READ(8)
+def my_read_handler():
+    humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
+    t = ' {0:0.1f}'.format(temperature)
+    blynk.virtual_write(8, t)
+
+
 @blynk.VIRTUAL_READ(9)
 def my_read_handler():
-        humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
-        blynk.virtual_write(8, temperature)
-        while True:
-                humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
-                blynk.virtual_write(8, temperature)
-"""
+    humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
+    h = ' {0:0.1f}'.format(humidity)
+    blynk.virtual_write(9, h)
+
+
 # Start Blynk (this call should never return)
 blynk.run()
 
