@@ -15,11 +15,11 @@ if len(sys.argv) != 2:
     print scanble(timeout = 3)
     sys.exit(1)
 """
-BLYNK_AUTH = 'b1d9aa0b91ee40769c0ade8b3519f8b1'
+BLYNK_AUTH = 'Your Auth Token'
 """
-macadr = "34:15:13:CD:C0:02"
+macadr = "MAC Adr"
 swfir = BLEDevice(macadr)
-macadr =  "D4:36:39:D8:61:17"   
+macadr =  "MAC Adr"   
 swsec = BLEDevice(macadr)
 """
 # Initialize Blynk
